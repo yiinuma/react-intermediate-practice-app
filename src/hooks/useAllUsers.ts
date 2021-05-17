@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { User } from "../components/types/api/user";
+import { User } from "../types/api/user";
 import { useMessage } from "./useMessage";
 
 export const useAllUsers = () => {
