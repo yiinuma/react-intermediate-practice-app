@@ -1,13 +1,13 @@
-import { memo, VFC } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { Login } from "../components/pages/Login";
+import { Login } from "../components/pages/login/Login";
+import { homeRoutes } from "./HomeRoutes";
 import { Page404 } from "../components/pages/Page404";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
-import { LoginUserProvider } from "../providers/LoginUserProvider";
-import { homeRoutes } from "./HomeRoutes";
+import { LoginUserProvider } from "../hooks/providers/useLoginUserProvider";
 
-export const Router: VFC = memo(() => {
+export const Router = () => {
   return (
     <Switch>
       <LoginUserProvider>
@@ -18,7 +18,7 @@ export const Router: VFC = memo(() => {
           path="/home"
           render={({ match: { url } }) => (
             <Switch>
-              {homeRoutes.map((route) => (
+              {homeRoutes.map(route => (
                 <Route
                   key={route.path}
                   exact={route.exact}
@@ -36,4 +36,4 @@ export const Router: VFC = memo(() => {
       </Route>
     </Switch>
   );
-});
+};

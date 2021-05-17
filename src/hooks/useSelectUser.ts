@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useState } from "react";
+
 import { User } from "../types/api/user";
+import { useMessage } from "./useMessage";
 
 type Props = {
   id: number;
@@ -7,16 +10,22 @@ type Props = {
   onOpen: () => void;
 };
 
-//選択したユーザー情報を特定しモーダルを表示するカスタムフック
+// 選択したユーザー情報を特定しモーダルを表示するカスタムフック
 export const useSelectUser = () => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const { showMessage } = useMessage();
+
+  const [selectedUser, setSelectedUser] = useState<User>();
 
   const onSelectUser = useCallback((props: Props) => {
     const { id, users, onOpen } = props;
-    const targetUser = users.find((user) => user.id === id);
-    setSelectedUser(targetUser!);
-    onOpen();
+    const targetUser = users.find(obj => obj.id === id);
+    if (!targetUser) {
+      showMessage({ title: "ユーザーが見つかりません", status: "error" });
+      return;
+    } else {
+      setSelectedUser(targetUser);
+      onOpen();
+    }
   }, []);
-
   return { onSelectUser, selectedUser };
 };
