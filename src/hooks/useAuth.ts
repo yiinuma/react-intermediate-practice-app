@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import { User } from "../types/api/user";
 import { useMessage } from "./useMessage";
-import { useLoginUser } from "../hooks/providers/useLoginUserProvider";
+import { useLoginUser } from "./providers/LoginUserProvider";
 
 export const useAuth = () => {
   const history = useHistory();
@@ -18,7 +18,7 @@ export const useAuth = () => {
     setLoading(true);
     axios
       .get<User>(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then(async res => {
+      .then(async (res) => {
         if (res.data) {
           // contextにログインユーザーの情報を保存
           // サンプル的にidが10のユーザーを管理者としてみる

@@ -4,14 +4,14 @@ import {
   Spinner,
   useDisclosure,
   Wrap,
-  WrapItem
+  WrapItem,
 } from "@chakra-ui/react";
 
 import { UserCard } from "../../organisms/user/UserCard";
 import { useAllUsers } from "../../../hooks/useAllUsers";
 import { UserDetailModal } from "../../organisms/modal/UserDetailModal";
 import { useSelectUser } from "../../../hooks/useSelectUser";
-import { useLoginUser } from "../../../hooks/providers/useLoginUserProvider";
+import { useLoginUser } from "../../../hooks/providers/LoginUserProvider";
 
 export const UserManagement: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,8 +35,8 @@ export const UserManagement: VFC = memo(() => {
           <Spinner color="teal.200" />
         </Center>
       ) : (
-        <Wrap p={{ base: 4, md: 10 }}>
-          {users.map(obj => (
+        <Wrap p={{ base: 4, md: 10 }} justify="center">
+          {users.map((obj) => (
             <WrapItem key={obj.id} mx="auto">
               <UserCard
                 id={obj.id}

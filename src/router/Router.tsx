@@ -5,7 +5,7 @@ import { Login } from "../components/pages/login/Login";
 import { homeRoutes } from "./HomeRoutes";
 import { Page404 } from "../components/pages/Page404";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
-import { LoginUserProvider } from "../hooks/providers/useLoginUserProvider";
+import { LoginUserProvider } from "../hooks/providers/LoginUserProvider";
 
 export const Router = () => {
   return (
@@ -18,7 +18,7 @@ export const Router = () => {
           path="/home"
           render={({ match: { url } }) => (
             <Switch>
-              {homeRoutes.map(route => (
+              {homeRoutes.map((route) => (
                 <Route
                   key={route.path}
                   exact={route.exact}
